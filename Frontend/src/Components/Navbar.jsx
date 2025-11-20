@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login";
+import Logout from "./Logout";
+import {useAuth} from "../context/Authprovider"
 function Navbar() {
+  const [authUser,setAuthUser]=useAuth();
+ 
   
 
   const [sticky,setSticky]=useState(false)
@@ -91,11 +95,15 @@ function Navbar() {
   
 </label>
           </div>
-          
+          {
+            authUser?<Logout/>:
+             
           <div className="">
-            <a className="bg-black text-white p-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer" onClick={()=>document.getElementById("my_modal_3").showModal()}>Login</a>
-            <Login/> 
-          </div>
+          <a className="bg-black text-white p-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer" onClick={()=>document.getElementById("my_modal_3").showModal()}>Login</a>
+          <Login/> 
+        </div>
+          }
+         
         </div>
         </div>
       </div>
